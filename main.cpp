@@ -4,7 +4,6 @@
 #include "network.hpp"
 
 
-
 int main(){
     Snake snek("Heisenberg");
     std::cout << snek.say_my_name() << std::endl;
