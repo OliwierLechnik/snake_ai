@@ -29,12 +29,18 @@ void Snake::move(int direction){
     switch(direction){
         case 0: 
             head.second--;
+            break;
         case 1:
             head.first++;
+            break;
         case 2:
             head.second++;
+            break;
         case 3:
             head.first--;
+            break;
+        default:
+            break;
     }
 
     //check if grid state is valid
@@ -79,8 +85,8 @@ std::vector <uint8_t> Snake::getPixelVector(){
         before we call this function, we assume that the state of the grid is valid
         
         black - empty cell
-        red - head
-        green - fruit
+        red - fruit
+        green - head
         blue - tail
     */
 
@@ -92,12 +98,12 @@ std::vector <uint8_t> Snake::getPixelVector(){
         pixels[i]=255;
     }
 
-    pixels[this->head.first*this->head.second*4]=255;
-    
-    pixels[this->fruit.first*this->fruit.second*4+1]=255;
+    pixels[(this->size.first*this->fruit.second+this->fruit.first)*4]=255;
 
+    pixels[(this->size.first*this->head.second+this->head.first)*4+1]=255;
+    
     for(const std::pair <int, int> & t : this->tail){
-        pixels[t.first*t.second*4+2]=255;
+        pixels[(this->size.first*t.second+t.first)*4+2]=255;
     }
 
     return pixels;

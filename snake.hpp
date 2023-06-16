@@ -34,7 +34,6 @@ public:
         red - head
         green - fruit
         blue - tail
-
     */
 
     void move(int direction); // 0 - up, 1 - right, 2 - down, 3 - left
