@@ -4,9 +4,17 @@
 #include "network.hpp"
 #include <SFML/Graphics.hpp>
 
-int main(){
+void playSnek();
 
-    const int width = 35;
+int main(){
+    Network network({4,3,3,2});
+    network.printBias();
+
+    return 0;
+}
+
+void playSnek(){
+        const int width = 35;
     const int height = 25;
     const int scale = 25;
 
@@ -18,6 +26,8 @@ int main(){
     snekTexture.create(width,height);
     sf::Sprite snekSprite;
 
+    sf::Clock clock;
+    sf::Time t = clock.getElapsedTime();
 
     while (window.isOpen()) {
         sf::Event event;
@@ -55,5 +65,4 @@ int main(){
         window.draw(snekSprite);
         window.display();
     }
-    return 0;
 }

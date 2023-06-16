@@ -20,11 +20,8 @@ void Snake::move(int direction){
         return;
     }
 
-    //add head to tail and shorten tail if nececery
     this->tail.insert(this->tail.begin(), this->head);
-    while(this->tail.size() > tailSize){
-        this->tail.pop_back();
-    }
+
     //move head to desired grid squere
     switch(direction){
         case 0: 
@@ -63,6 +60,9 @@ void Snake::move(int direction){
         }while(this->head == this->fruit || this->inTail(this->fruit));
     }
 
+    while(this->tail.size() > tailSize){
+        this->tail.pop_back();
+    }
 }
 
 

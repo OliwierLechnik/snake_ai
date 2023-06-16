@@ -7,16 +7,16 @@ private:
     std::vector <std::vector <float>> mBias;
     std::vector <std::vector <std::vector <float>>> tWeight;
 
-    void emptyBiasMatrix();
-    void emptyWeightTensor();
+    float fSigmoid(float value);
 
 public:
     Network(std::vector <int> layers);
     
     void printBias();
     void printWeights();
-    void saveNetwork(std::string path);
+    void save(std::string path);
     void loadFromFile(std::string path);
+    void permutate(float propability, float magnitude);
 
     std::vector <float> evaluate(std::vector <float> input);
 };
