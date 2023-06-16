@@ -8,13 +8,14 @@ void playSnek();
 
 int main(){
     Network network({4,3,3,2});
-    network.printBias();
+    auto decition = network.evaluate({0,0,0,1});
+    std::cout << decition[0] << " " << decition[1] << std::endl;
 
     return 0;
 }
 
 void playSnek(){
-        const int width = 35;
+    const int width = 35;
     const int height = 25;
     const int scale = 25;
 

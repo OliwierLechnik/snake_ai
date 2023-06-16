@@ -16,7 +16,7 @@ public:
     void printWeights();
     void save(std::string path);
     void loadFromFile(std::string path);
-    void permutate(float propability, float magnitude);
+    void permutate(float wFrequency, float wMagnitude, float bFrequency, float bMagnitude);
 
     std::vector <float> evaluate(std::vector <float> input);
 };
