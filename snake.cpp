@@ -58,3 +58,47 @@ void Snake::move(int direction){
     }
 
 }
+
+
+bool Snake::inTail(std::pair <int,int> cell){
+    for(const std::pair <int,int> & p : this->tail){
+        if(p==cell){
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Snake::isDead(){
+    return this->dead;
+}
+
+std::vector <uint8_t> Snake::getPixelVector(){
+
+    /*
+        before we call this function, we assume that the state of the grid is valid
+        
+        black - empty cell
+        red - head
+        green - fruit
+        blue - tail
+    */
+
+    std::vector <uint8_t> pixels;
+    pixels.resize(this->size.first*this->size.second*4);
+    std::fill(pixels.begin(), pixels.end(), 0);
+
+    for(int i = 3; i<=this->size.first*this->size.second*4; i+=4){
+        pixels[i]=255;
+    }
+
+    pixels[this->head.first*this->head.second*4]=255;
+    
+    pixels[this->fruit.first*this->fruit.second*4+1]=255;
+
+    for(const std::pair <int, int> & t : this->tail){
+        pixels[t.first*t.second*4+2]=255;
+    }
+
+    return pixels;
+}
