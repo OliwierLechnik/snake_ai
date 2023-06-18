@@ -9,7 +9,7 @@ Network::Network(std::vector <int> layers){
         matrix.resize(layers[i+1]);
         std::vector <float> tmp;
         tmp.resize(layers[i]);
-        std::fill(tmp.begin(), tmp.end(), 1.f);
+        std::fill(tmp.begin(), tmp.end(), 0.f);
         std::fill(matrix.begin(), matrix.end(), tmp);
         this->tWeight.push_back(matrix);
 
@@ -78,7 +78,7 @@ std::vector <float> Network::evaluate(std::vector <float> input){
             for(int k = 0; k < this->layers[i]; k++){
                 tmp += this->tWeight[i][j][k]*layers[layers.size()-1][k];
             }
-            layer.push_back(tmp);
+            layer.push_back(this->fSigmoid(tmp+mBias[i][j]));
         }
         layers.push_back(layer);
     }

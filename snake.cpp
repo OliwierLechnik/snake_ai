@@ -11,7 +11,7 @@ Snake::Snake(std::pair <int, int> size){
     }while(this->fruit == this->head);
     this->tailSize = 3;
 
-
+    this->trueScore = 290;
 }
 
 void Snake::move(int direction){
@@ -55,6 +55,7 @@ void Snake::move(int direction){
     if(this->head == this->fruit){
         this->tailSize++;
         this->regularScore++;
+        this->trueScore += this->fruitValue;
         do{
             this->fruit = {rand()%size.first, rand()%size.second};
         }while(this->head == this->fruit || this->inTail(this->fruit));
@@ -63,6 +64,8 @@ void Snake::move(int direction){
     while(this->tail.size() > tailSize){
         this->tail.pop_back();
     }
+    //score depending of direction of move (for neural network)
+    this->trueScore -= this->moveCost;
 }
 
 
@@ -77,6 +80,14 @@ bool Snake::inTail(std::pair <int,int> cell){
 
 bool Snake::isDead(){
     return this->dead;
+}
+
+int Snake::getScore(){
+    return this->regularScore;
+}
+
+int Snake::getRealScore(){
+    return this->trueScore;
 }
 
 std::vector <uint8_t> Snake::getPixelVector(){

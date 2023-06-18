@@ -6,7 +6,7 @@ private:
 
     //helper values for neural network
     const int moveCost = 10;
-    const int fruitValue = 100;
+    const int fruitValue = 290;
     int trueScore;
 
     //regular snake stuff
@@ -25,6 +25,9 @@ public:
     Snake(std::pair <int, int> size);
 
     bool isDead();
+
+    int getScore();
+    int getRealScore();
 
     std::vector <uint8_t> getPixelVector(); // array of pixels for both rendering and neural network
     /*
